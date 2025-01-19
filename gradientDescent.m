@@ -25,8 +25,11 @@ for iter = 1:num_iters
     % Save the cost J (J = 1/(2m)*SSE) in every iteration 
     
     % ====================== YOUR CODE HERE ======================
+    predicted = X*beta
+    error = predicted - y
+    beta = beta - (alpha/m)*(X'*error)
     J_history(iter) = computeCost(X, y, beta);
-  
+
 
     % ============================================================
 end

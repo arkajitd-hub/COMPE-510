@@ -12,7 +12,9 @@ J = 0;
 % Instructions: Compute the cost of a particular choice of beta
 %               You should set J to the cost.
 
+predicted = X*beta
 
+J = (1/(2*m))*sum((predicted-y).^2)
 
 
 % =========================================================================

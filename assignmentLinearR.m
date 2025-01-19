@@ -9,6 +9,7 @@
 % 
 %  This file contains code that helps you get started on the
 %  linear regression assignment. 
+
 %
 %  You will need to complete the following functions in this 
 %  exericse:
@@ -53,7 +54,6 @@ fprintf('===== Part 1: Normal Equations ===== \n');
 fprintf('First 10 examples from the training dataset: \n');
 fprintf(' x = [%.0f %.0f %.0f], y = %.0f \n', [X_train(1:10,:) y_train(1:10,:)]');
 fprintf('\n');
-
 num_train = length(y_train); % number of training examples
 
 % Add intercept term to X_train and X_test
@@ -100,7 +100,9 @@ fprintf('\n');
 % Step 2: Estimate the price of a house that is 2 year old, 500 meter 
 % to the nearest MRT station, has 8 convenience stores in the living circle on foot
 % ====================== YOUR CODE HERE ======================
-price = ... % You should change this.
+X_predict = [1,2,500,8];
+price = X_predict*beta;
+% You should change this.
 
 % ============================================================
 
@@ -141,8 +143,9 @@ fprintf('\n');
 % normalized data
 % ====================== YOUR CODE HERE ======================
 % Hint: The testing set also needs to be normlized first
-Xn_test = .... % you should change this
-error_n = .... % you should change this
+[Xn_test mu sigma] = featureNormalize(X_test(:,2:end));
+Xn_test = [ones(num_test,1) Xn_test]
+error_n = evaluateAccuracy(beta_n, Xn_test, y_test);.... % you should change this
 
 
 % ============================================================
@@ -176,8 +179,8 @@ fprintf('===== Part 4: Gradient Descent ===== \n');
 %         1. alpha: learning rate
 %         2. num_iters: number of training iterations
 % ====================== YOUR CODE HERE ======================
-alpha = ... % you should change this
-num_iters = ... % you should change this
+alpha =0.003 % you should change this
+num_iters = 10000 % you should change this
 
 % ============================================================
 
@@ -214,7 +217,12 @@ fprintf('\n');
 % ====================== YOUR CODE HERE ======================
 % Recall that the first column of X is all-ones. Thus, it does
 % not need to be normalized. But the other columns need to be normalized
-price_g = ... % You should change this
+Xn_new = [2,500,8]
+for i = 1:3
+    Xn_new(i) = (Xn_new(:,i) - mu(i))/sigma(i)
+end
+Xn_new = [ones(1,1) Xn_new]
+price_g = Xn_new*beta_g % You should change this
 
 % ============================================================
 

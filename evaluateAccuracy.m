@@ -8,7 +8,8 @@ m = length(y); % number of testing examples
 % Instructions: Compute the prediction error (mean squared error) using the
 %               testing set.
 %
-
+total_error = (y-X*beta)'*(y-X*beta)
+error = total_error/m
 
 
 % ============================================================

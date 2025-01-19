@@ -24,5 +24,14 @@ function [X_train, y_train, X_test, y_test] = loadData()
 
     
  % ============================================================   
-    
+
+    X = readtable('housePriceData.xlsx','Range','C2:E415');
+    y = readtable('housePriceData.xlsx','Range','H2:H415');
+    X_array = table2array(X);
+    y_array = table2array(y);
+    X_len = length(X_array);
+    X_train = X_array(1:290,:);
+    y_train = y_array(1:290,:);
+    X_test = X_array(291:X_len,:);
+    y_test = y_array(291:X_len,:);
 end
