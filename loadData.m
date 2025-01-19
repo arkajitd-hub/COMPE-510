@@ -24,5 +24,16 @@ function [X_train, y_train, X_test, y_test] = loadData()
 
     
  % ============================================================   
-    
+
+    X = readtable('pima-indians-diabetes.csv','Range','A1:H768');
+    y = readtable('pima-indians-diabetes.csv','Range','I1:I768');
+    %format long;
+    X_array = table2array(X);
+    y_array = table2array(y);
+    X_len = length(X_array);
+    disp(X_len)
+    X_train = X_array(1:538,:);
+    y_train = y_array(1:538,:);
+    X_test = X_array(539:X_len-1,:);
+    y_test = y_array(539:X_len-1,:);
 end
